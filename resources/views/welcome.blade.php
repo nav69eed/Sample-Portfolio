@@ -38,6 +38,39 @@
         new WOW().init();
     </script>
 
+
+<style>
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tabs button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+border:2px solid var(--action);
+}
+
+.tabs button.active {
+    background-color: var(--secondary);
+border:2px solid var(--secondary);
+    color: #fff;
+}
+.tabs button:hover {
+    background-color: white;
+    color: var(--secondary);
+}
+
+/* Add any additional custom styling as needed */
+
+</style>
+
+
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar">
@@ -302,8 +335,18 @@
     <section class="portfolio mt-5 mb-3" id="portfolio">
         <!-- Portfolio Section Heading-->
         <h4 class="c-s text-center mb-5">My Work</h4>
+<div class="tabs mb-4">
+    <button class="btn tab-button btn-primary active" data-category="all">All</button>
+    <button class="btn tab-button btn-primary" data-category="html">Front-end</button>
+    <button class="btn tab-button btn-primary" data-category="laravel">Laravel-(PHP)</button>
+  <button class="btn tab-button btn-primary" data-category="wordpress">wordpress</button>
+  <button class="btn tab-button btn-primary" data-category="cpp">C++</button>
+  <button class="btn tab-button btn-primary" data-category="c">C</button>
+    <!-- Add more buttons for other categories -->
+</div>
+
         <div class="container project-container">
-            <div class="project-item">
+            <div class="project-item All Front-end">
                 <div class="myCard">
                     <div class="innerCard wow animate__animated animate__fadeInLeft">
                         <div class="frontSide">
@@ -322,7 +365,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">
+            <div class="project-item All C++">
                 <div class="myCard">
                     <div class="innerCard wow animate__animated animate__fadeInDown">
                         <div class="frontSide">
@@ -344,7 +387,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">
+            <div class="project-item All C++">
                 <div class="myCard">
                     <div class="innerCard wow animate__animated animate__fadeInRight">
                         <div class="frontSide">
@@ -363,7 +406,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">
+            <div class="project-item All C++">
                 <div class="myCard">
                     <div class="innerCard wow animate__animated animate__fadeInLeft">
                         <div class="frontSide">
@@ -383,7 +426,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">
+            <div class="project-item All Laravel-(PHP)">
                 <div class="myCard">
                     <div class="innerCard wow animate__animated animate__fadeInUp">
                         <div class="frontSide">
@@ -402,7 +445,7 @@
                     </div>
                 </div>
             </div>
-            <div class="project-item">
+            <div class="project-item All C">
                 <div class="myCard">
                     <div class="innerCard wow animate__animated animate__fadeInRight">
                         <div class="frontSide">
@@ -421,6 +464,30 @@
                     </div>
                 </div>
             </div>
+            
+             <div class="project-item All Front-end">
+                <div class="myCard">
+                    <div class="innerCard wow animate__animated animate__fadeInDown">
+                        <div class="frontSide">
+                            <img src="https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                alt="Website" class="img-fluid" />
+                        </div>
+                        <div class="backSide"
+                            style="
+                  background: url('https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')
+                    no-repeat center center/cover;
+                ">
+                            <p class="h4 title">Software Builder Website</p>
+                            <a href="https://nav69eed.github.io/"
+                                target="_blank">
+                                <button class="btn">View Project</button>
+                            </a>
+                            <p>Category:- Front-end</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            
         </div>
     </section>
     <section id="education" class="education container-fluid">
@@ -716,7 +783,8 @@
 
 
 
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script>
         var typed = new Typed("#skills", {
             strings: [
@@ -731,6 +799,48 @@
             loop: true,
             loopCount: Infinity,
         });
+
+
+
+
+
+
+
+function showAllProjects() {
+    // Show all projects
+    const projectCards = document.querySelectorAll('.project-item');
+    projectCards.forEach(card => card.style.display = 'block');
+}
+
+function showCategoryProjects(category) {
+    showAllProjects();
+    const projectCards = document.querySelectorAll('.project-item');
+    projectCards.forEach(card => {
+        if (!card.classList.contains(category)) {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Add event listeners to your tab buttons
+document.addEventListener('DOMContentLoaded', function () {
+    const tabButtons = document.querySelectorAll('.tabs button');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const category = this.textContent; // Get the category from the button's text
+            showCategoryProjects(category);
+        });
+    });
+});
+
+
+ $(document).ready(function () {
+            $(".tab-button").click(function () {
+                $(".tab-button").removeClass("active");
+                $(this).addClass("active");  
+            });
+        });
+
     </script>
 
 </body>

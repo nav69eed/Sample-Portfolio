@@ -2,6 +2,8 @@
 
 use App\Mail\Thanks;
 use App\Models\User;
+use App\Notifications\Naveed;
+use App\Notifications\subscribe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
@@ -9,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\formDataController;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Controllers\customAuthController;
 
 /*
@@ -91,5 +94,14 @@ Route::get('dataa', function () {
         '_characters' => 500,
     ]);
     $data = $response['data'];
-    return view('Sample')->with(["data"=>$data]);
+    return view('Sample')->with(["data" => $data]);
 });
+
+Route::get('/notification', function () {
+    $user = User::all();
+
+    Notification::sendNow($user, new Naveed());
+
+    return 'Notification sent successfully.';
+});
+
